@@ -4,9 +4,9 @@ cadena2 = "ESTOY UTILIZANDO LOS METODOS DE PYTHON"
 cadena3 = "estoy utilizando los metodos de python"
 cadena4 = "ESTOY utilizanod los METODOS DE python"
 
-# convertir minusculas a mayusculas
-print(cadena.lower())
 # cambiar mayusculas a minusculas
+print(cadena.lower())
+# convertir minusculas a mayusculas 
 print(cadena.upper())
 # poner la primera letra en mayusculas
 print(cadena3.capitalize())
