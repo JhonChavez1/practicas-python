@@ -6,6 +6,5 @@ print(lista[3])
 print(len(lista))
 
 # cambiar el valor de una lista
-
 lista[0] = "python"
 print(lista)
