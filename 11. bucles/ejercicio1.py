@@ -12,7 +12,7 @@ while i < 10:
     print(numero, "*", j, "=", i * numero)
 
 
-# solución 2 empezando desde 0 y utilizando el .format
+# solución 2 empezando desde 0 y utilizando el método .format
 
 numero1 = int(input("Por favor ingrese un número: "))
 i = 0
