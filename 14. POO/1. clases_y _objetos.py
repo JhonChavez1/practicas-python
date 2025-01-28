@@ -1,4 +1,4 @@
-class FabricaTelefonos:
+class FabricaTelefonos():
     pass
 
 print(type(FabricaTelefonos))

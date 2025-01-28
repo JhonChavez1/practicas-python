@@ -12,6 +12,8 @@ def suma2(num3, num4):
 print(suma2(10, 35))
 print(suma2(100, 50))
 
+
+# función no reutilizable
 def sumar():
     num5 = 20
     num6 = 70

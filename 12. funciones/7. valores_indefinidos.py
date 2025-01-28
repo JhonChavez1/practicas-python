@@ -3,7 +3,7 @@ def argumento(num):
 
 print(argumento(56.562))
 
-# cuando no sabemos la cantidad de valores que vamos a ingresar podemos recurrir al parametro con un * y será aalmacenado como una tupla 
+# cuando no sabemos la cantidad de valores que vamos a ingresar podemos recurrir al parámetro con un * y será aalmacenado como una tupla 
 
 def argumento2(*num):
     return type(num)
