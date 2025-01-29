@@ -9,15 +9,20 @@ class Calculadora():
         self.valor1 = valor1
         self.valor2 = valor2
 
-    def operaciones(self, suma, resta, multiplicacion, division):
-        suma = self.valor1 + self.valor2
-        resta = self.valor1 + self.valor2
-        multiplicacion = self.valor1 * self.valor2
-        division = self.valor1 / self.valor2
-        print("El resultado de la suma es: ", suma)
+    def operaciones(self, suma, resta, division, multiplicacion):
+        self.suma = valor1 + valor2
+        self.resta = valor1 - valor2
+        self.division = valor1 / valor2
+        self.multiplicacion = valor1 * valor2
+
+        return suma, resta, multiplicacion, division
+        
+        
+'''     print("El resultado de la suma es: ", suma)
         print("El resultado de la resta es: ", resta)
         print("El resultado de la multiplicacion es: ", multiplicacion)
         print("el resultado de la division es: ", division)
+'''
         
 '''
     def resta(self):
@@ -36,7 +41,8 @@ class Calculadora():
 valor1 = int(input("Por favor ingrese el primer valor: "))
 valor2 = int(input("Por favor ingrese el segundo valor: "))
 calculadora = Calculadora(valor1, valor2)
-print(calculadora.operaciones())
+calculadora.operaciones()
+
 
 '''
 calculadora.suma()
