@@ -22,6 +22,8 @@ comida.color("Red")
 comida.penup()
 comida.goto(0, 100)
 
+cuerpo =  []
+
 def arriba():
     snake.direction = "up"
 
@@ -57,18 +59,21 @@ s.onkeypress(derecha, "Right")
 s.onkeypress(izquierda, "Left")
 
 
-
-
 # movimientos repetitivos
 while True:
     s.update()
 
  # movimentos de la comida aleatoria   
-    if snake.distance(comida) < 20:   # sistance = método el cual nos permite determinar la distancia de un objeto. "En este caso hacia comida"
+    if snake.distance(comida) < 20:   # distance = método el cual nos permite determinar la distancia de un objeto. "En este caso hacia comida"
         x = random.randint(-250, 250)
         y = random.randint(-250, 250)
         comida.goto(x, y)
 
+        nuevo_cuerpo = turtle.Turtle()
+        nuevo_cuerpo.shape("square")
+        nuevo_cuerpo.color("green")
+        nuevo_cuerpo.penup()
+        nuevo_cuerpo.goto(0, 0)
 
     movimiento()
     time.sleep(retraso) 
