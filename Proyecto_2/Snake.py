@@ -3,6 +3,8 @@ import time
 import random
 
 retraso = 0.1
+marcador = 0
+marcador_alto = 0
 
 s = turtle.Screen()
 # s.setup(750, 750)               # Dar un tamaño a la pantalla
@@ -13,6 +15,7 @@ snake = turtle.Turtle()
 snake.speed(1)
 snake.shape("square")
 snake.penup()
+snake.goto(0, 0)
 snake.direction = "stop"        # snake.direction = define la dirección de la serpiente. "stop" Reinicia la serpiente a su lugar inicial cuando la toca una parte de la pantalla
 snake.color("green")
 
@@ -23,6 +26,13 @@ comida.penup()
 comida.goto(0, 100)
 
 cuerpo =  []
+
+texto = turtle.Turtle()
+texto.color("black")
+texto.penup()
+texto.hideturtle()
+texto.goto(0, -250)
+texto.write("Marcador: 0\tMarcador más alto: 0", align="center", font=("arial", 24, "normal"))
 
 def arriba():
     snake.direction = "up"
@@ -63,7 +73,7 @@ s.onkeypress(izquierda, "Left")
 while True:
     s.update()
 
-    if snake.xcor() > 250 or snake.ycor() > 250 or snake.ycor() > 300:
+    if snake.xcor() > 250 or snake.xcor() < -250 or snake.ycor() > 300 or snake.ycor() < -250:
         time.sleep(2)
         for i in cuerpo:
             i.clear()
@@ -72,11 +82,16 @@ while True:
         snake.direction = "stop"
         cuerpo.clear
 
+        marcador = 0
+        texto.clear()
+        texto.write(f"Marcador:   {marcador}\tMarcador más alto: {marcador_alto}", align= "center", font = ("arial", 24))
+
+
 
  # movimentos de la comida aleatoria   
     if snake.distance(comida) < 20:   # distance = método el cual nos permite determinar la distancia de un objeto. "En este caso hacia comida"
-        x = random.randint(-250, 250)
-        y = random.randint(-250, 250)
+        x = random.randint(-200, 200)
+        y = random.randint(-200, 200)
         comida.goto(x, y)
 
         nuevo_cuerpo = turtle.Turtle()
@@ -85,6 +100,15 @@ while True:
         nuevo_cuerpo.penup()
         nuevo_cuerpo.goto(0, 0)
         cuerpo.append(nuevo_cuerpo)
+
+        marcador  += 10
+        if marcador > marcador_alto:
+            cuenta_alto = marcador
+            texto.clear()
+            texto.write(f"Marcador:  {marcador}\tMarcador más alto: ", {marcador_alto}, align= "center", font = ("arial", 24))
+
+
+
         
     total = len(cuerpo)         # obtiene la longitud (es decir, la cantidad de elementos) de una colección como una lista, cadena, tupla,
     for index in range(-1, 0, -1):
@@ -98,6 +122,17 @@ while True:
         cuerpo[0].goto(x,y)
 
     movimiento()
+
+    for i in cuerpo:
+        if i.distance(snake) <20:
+            for i in cuerpo:
+                i.clear()
+                i.hideturtle()
+            snake.home()
+            cuerpo.clear()
+            snake.direction = "stop"
+    
+
     time.sleep(retraso) 
 
 
