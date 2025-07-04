@@ -63,6 +63,16 @@ s.onkeypress(izquierda, "Left")
 while True:
     s.update()
 
+    if snake.xcor() > 250 or snake.ycor() > 250 or snake.ycor() > 300:
+        time.sleep(2)
+        for i in cuerpo:
+            i.clear()
+            i.hideturtle()
+        snake.home()
+        snake.direction = "stop"
+        cuerpo.clear
+
+
  # movimentos de la comida aleatoria   
     if snake.distance(comida) < 20:   # distance = método el cual nos permite determinar la distancia de un objeto. "En este caso hacia comida"
         x = random.randint(-250, 250)
@@ -74,6 +84,18 @@ while True:
         nuevo_cuerpo.color("green")
         nuevo_cuerpo.penup()
         nuevo_cuerpo.goto(0, 0)
+        cuerpo.append(nuevo_cuerpo)
+        
+    total = len(cuerpo)         # obtiene la longitud (es decir, la cantidad de elementos) de una colección como una lista, cadena, tupla,
+    for index in range(-1, 0, -1):
+        x = cuerpo [index-1].xcor()
+        y = cuerpo [index-1].ycor()
+        cuerpo[index].goto(x,y)
+
+    if total >0:
+        x = snake.xcor()
+        y = snake.ycor()
+        cuerpo[0].goto(x,y)
 
     movimiento()
     time.sleep(retraso) 

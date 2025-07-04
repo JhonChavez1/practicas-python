@@ -18,7 +18,7 @@ t.forward(100)
 t.rt(100)
 t.forward(100)
 
-# modificar la toltuga
+# modificar la tortuga
 t.speed(1)
 t.shape("turtle")       # Tortuga
 t.lt(50)
@@ -47,7 +47,7 @@ t.clear()               # Limpiar toda la pantalla
 t.reset()               # reiniciar el programa
 
 t.forward(100)
-t.stamp()
+t.stamp()               # Dejar una marca
 t.forward(100)
 
 
