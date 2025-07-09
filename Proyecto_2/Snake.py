@@ -10,9 +10,10 @@ s = turtle.Screen()
 # s.setup(750, 750)               # Dar un tamaño a la pantalla
 # s.bgcolor("gray")               # color de la pantalla
 s.title("Snake")
+s.tracer()
 
 snake = turtle.Turtle()
-snake.speed(1)
+snake.speed(0)
 snake.shape("square")
 snake.penup()
 snake.goto(0, 0)
@@ -24,15 +25,17 @@ comida.shape("circle")
 comida.color("Red")
 comida.penup()
 comida.goto(0, 100)
+comida.speed(0)
 
-cuerpo =  []
+cuerpo = []
 
 texto = turtle.Turtle()
+texto.speed(0)
 texto.color("black")
 texto.penup()
 texto.hideturtle()
 texto.goto(0, -250)
-texto.write("Marcador: 0\tMarcador más alto: 0", align="center", font=("arial", 24, "normal"))
+texto.write(f"Marcador: {marcador}\tMarcador más alto:  {marcador_alto}", align="center", font=("arial", 24))
 
 def arriba():
     snake.direction = "up"
@@ -51,16 +54,16 @@ def izquierda():
 def movimiento():
     if snake.direction == "up":
         y = snake.ycor()        # devuelve la ubicación en el eje Y del objeto 
-        snake.sety(y + 10)      # designando el movimiento hacia arriba
+        snake.sety(y + 20)      # designando el movimiento hacia arriba
     if snake.direction == "down":
         y = snake.ycor()
-        snake.sety(y - 10)
+        snake.sety(y - 20)
     if snake.direction == "right":
         x = snake.xcor()
-        snake.setx(x + 10)
+        snake.setx(x + 20)
     if snake.direction == "left":
         x = snake.xcor()
-        snake.setx(x - 10)
+        snake.setx(x - 20)
 
 s.listen()                      # poner a escuchar la pantalla
 s.onkeypress(arriba, "Up")      # presionar la teclas del teclado
@@ -73,18 +76,18 @@ s.onkeypress(izquierda, "Left")
 while True:
     s.update()
 
-    if snake.xcor() > 250 or snake.xcor() < -250 or snake.ycor() > 300 or snake.ycor() < -250:
+    if snake.xcor() > 350 or snake.xcor() < -350 or snake.ycor() > 300 or snake.ycor() < -250:
         time.sleep(2)
         for i in cuerpo:
             i.clear()
             i.hideturtle()
         snake.home()
         snake.direction = "stop"
-        cuerpo.clear
+        cuerpo.clear()
 
         marcador = 0
         texto.clear()
-        texto.write(f"Marcador:   {marcador}\tMarcador más alto: {marcador_alto}", align= "center", font = ("arial", 24))
+        texto.write(f"Marcador:   {marcador}\tMarcador más alto: {marcador_alto}", align="center", font=("arial", 24))
 
 
 
@@ -99,21 +102,22 @@ while True:
         nuevo_cuerpo.color("green")
         nuevo_cuerpo.penup()
         nuevo_cuerpo.goto(0, 0)
+        nuevo_cuerpo.speed(0)
         cuerpo.append(nuevo_cuerpo)
 
-        marcador  += 10
+        marcador += 10
         if marcador > marcador_alto:
-            cuenta_alto = marcador
-            texto.clear()
-            texto.write(f"Marcador:  {marcador}\tMarcador más alto: ", {marcador_alto}, align= "center", font = ("arial", 24))
+            marcador_alto = marcador
+        texto.clear()
+        texto.write(f"Marcador:  {marcador}\tMarcador más alto: {marcador_alto}", align= "center", font = ("arial", 24))
 
 
 
         
     total = len(cuerpo)         # obtiene la longitud (es decir, la cantidad de elementos) de una colección como una lista, cadena, tupla,
-    for index in range(-1, 0, -1):
-        x = cuerpo [index-1].xcor()
-        y = cuerpo [index-1].ycor()
+    for index in range(total -1, 0, -1):
+        x = cuerpo[index-1].xcor()
+        y = cuerpo[index-1].ycor()
         cuerpo[index].goto(x,y)
 
     if total >0:
