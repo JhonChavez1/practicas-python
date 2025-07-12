@@ -25,6 +25,7 @@ marco.pack_propagate(False)
 marco.pack(pady=50)
 
 
+# LABEL
 # Agregar una etiqueta
 etiqueta = tk.Label(ventana, text="Hola, bienvenidos a tkinter!")
 # Posicioner la etiqueta
@@ -37,6 +38,9 @@ etiqueta.config(text= "Funcionalidades: ")
 
 botones= tk.Label(ventana, text="Botones:")
 botones.pack()
+
+
+# Button
 # Agregar un botón
 boton = tk.Button(ventana, text="Esto es un botón")
 boton.pack()
@@ -130,6 +134,39 @@ resultado4 = tk.Label(ventana, text= "")
 resultado4.pack()
 
 
+# CHECKBUTTON
+opcion_var = tk.IntVar()
+
+check_opciones = tk.Checkbutton(
+    ventana,
+    text= "Desea recibir notificaciones?",
+    variable= opcion_var,
+    onvalue= 1,
+    offvalue= 0
+)
+check_opciones.pack()
+
+def mostrar_estado():
+    if opcion_var.get() ==1:
+        resultado5.config(text= "Notificaciones activadas")
+        print(opcion_var.get())
+    else:
+        resultado5.config(text="Notificaciones desactivadas")
+        print(opcion_var.get())
+
+boton5 = tk.Button(ventana, text = "Confirmar", command= mostrar_estado)
+boton5.pack()
+
+resultado5 = tk.Label(ventana, text="")
+resultado5.pack()
+
+
+
+
+
+
 
 # Mantiene la ventana abierta 
 ventana.mainloop()
+
+
