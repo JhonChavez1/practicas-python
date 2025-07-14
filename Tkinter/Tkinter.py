@@ -12,7 +12,7 @@ ventana.title("Mi primerea aplicación en tkinter")
 #ventana.geometry("500x500")
 
 # Fijar el tamaño de la ventana (ancho, alto)
-ventana.resizable(False, True)
+ventana.resizable(True, True)
 
 
 # Agregar un widget 
@@ -22,14 +22,14 @@ marco = tk.Frame(ventana, width=150, height=100, bg="lightgray", borderwidth=2, 
 marco.pack_propagate(False)
 # Posiciona el marco
 # pad = dar un espacio en el contorno de la ventana
-marco.pack(pady=50)
+marco.pack(pady=50, side="left", fill="y")
 
 
 # LABEL
 # Agregar una etiqueta
 etiqueta = tk.Label(ventana, text="Hola, bienvenidos a tkinter!")
 # Posicioner la etiqueta
-etiqueta.pack()
+etiqueta.pack(side="top")
 
 etiqueta2 = tk.Label(ventana, text="Este es un segundo Label")
 etiqueta2.pack()
@@ -159,6 +159,22 @@ boton5.pack()
 
 resultado5 = tk.Label(ventana, text="")
 resultado5.pack()
+
+
+
+# RADIOBUTTON
+seleccionar_var = tk.StringVar()
+
+opcion1 = tk.Radiobutton(ventana, text= "Opción 1", variable= seleccionar_var, value= "Opcion1")
+opcion1.pack()
+
+opcion2 = tk.Radiobutton(ventana, text= "Opción 2", variable= seleccionar_var, value= "Opcion2")
+opcion2.pack()
+
+opcion3 = tk.Radiobutton(ventana, text= "Opción 3", variable= seleccionar_var, value= "Opcion3")
+opcion1.pack()
+
+
 
 
 
