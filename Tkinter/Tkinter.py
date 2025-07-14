@@ -12,7 +12,7 @@ ventana.title("Mi primerea aplicación en tkinter")
 #ventana.geometry("500x500")
 
 # Fijar el tamaño de la ventana (ancho, alto)
-ventana.resizable(True, True)
+# ventana.resizable(True, True)
 
 
 # Agregar un widget 
@@ -21,15 +21,17 @@ marco = tk.Frame(ventana, width=150, height=100, bg="lightgray", borderwidth=2, 
 # True = para que el contenido siempre se adapte al tamaño del frame 
 marco.pack_propagate(False)
 # Posiciona el marco
-# pad = dar un espacio en el contorno de la ventana
-marco.pack(pady=50, side="left", fill="y")
+# pady = dar un espacio en el contorno de la ventana
+marco.pack(pady=50, side="left")
 
 
 # LABEL
 # Agregar una etiqueta
 etiqueta = tk.Label(ventana, text="Hola, bienvenidos a tkinter!")
 # Posicioner la etiqueta
-etiqueta.pack(side="top")
+#etiqueta.pack(side="top")
+# posicionar la etiqueta mediante cordenadas
+etiqueta.place(x=50, y=30)
 
 etiqueta2 = tk.Label(ventana, text="Este es un segundo Label")
 etiqueta2.pack()
@@ -71,7 +73,7 @@ texto_personalizado = tk.Label(
     height = 1,
     font =("Arial", 24, "italic")
 )
-texto_personalizado.pack(pady= 10)
+texto_personalizado.pack(pady= 5, side="top")
 
 # Modifica la etiqueta llamada texto personalizado al presionar el botón personalizado
 def accion_boton():
@@ -89,7 +91,7 @@ boton_personalizado = tk.Button(
     width = 15,
     command = accion_boton
 )
-boton_personalizado.pack()
+boton_personalizado.pack(side="left")
 
 def mostrar_nombre():
     nombre_obtenido = nombre.get()
@@ -122,10 +124,10 @@ def mostrar_comentario():
     resultado.config(text=f"comentario:  {comentario_obtenido}")
 
 etiqueta4 = tk.Label(ventana, text= "Escriba su comentario")
-etiqueta4.pack()
+etiqueta4.pack(side="left")
 
 comentario = tk.Text(ventana, width= 40, height= 5, wrap= "word")
-comentario.pack()
+comentario.pack(side="left")
 
 boton4 = tk.Button(ventana, text="Mostrar comentario", command= mostrar_comentario)
 boton4.pack()
@@ -165,6 +167,9 @@ resultado5.pack()
 # RADIOBUTTON
 seleccionar_var = tk.StringVar()
 
+def mostrar_radio_button():
+    resultado6.config(text=f"Opción seleccionada: {seleccionar_var.get()}")
+
 opcion1 = tk.Radiobutton(ventana, text= "Opción 1", variable= seleccionar_var, value= "Opcion1")
 opcion1.pack()
 
@@ -172,11 +177,57 @@ opcion2 = tk.Radiobutton(ventana, text= "Opción 2", variable= seleccionar_var, 
 opcion2.pack()
 
 opcion3 = tk.Radiobutton(ventana, text= "Opción 3", variable= seleccionar_var, value= "Opcion3")
-opcion1.pack()
+opcion3.pack()
+
+boton6 = tk.Button(ventana, text="Mostrar RadioButton", command=mostrar_radio_button)
+boton6.pack()
+
+resultado6 = tk.Label(ventana, text="")
+resultado6.pack()
 
 
 
+# SCALE
+# permite seleccionar un valor dentro de un rango numérico (por ejemplo: del 0 al 100), ya sea horizontal o verticalmente.
 
+valor_var = tk.IntVar()
+
+def mostrar_valor():
+    resultado7.config(text=f"Valor seleccionado por el usuario: {valor_var.get()}")
+
+escala = tk.Scale(
+    ventana,
+# Rango de la ventana
+    from_ =0,
+    to= 100,
+    orient=tk.HORIZONTAL,
+    variable= valor_var
+)
+escala.pack()
+
+boton = tk.Button(ventana, text= "Mostrar valor", command= mostrar_valor)
+boton.pack()
+
+resultado7 = tk.Label(ventana, text="")
+resultado7.pack()
+
+
+# LISTBOX
+#  es un widget que muestra una lista de elementos de la que se puede seleccionar uno o varios 
+lista = tk.Listbox(ventana, selectmode= tk.SINGLE)
+lista.pack(side="right")
+
+def mostrar_seleccion():
+# curselection = selección acutal
+    seleccion = lista.get(lista.curselection())
+    resultado.config(text=f"Seleccionaste: {seleccion}")
+    
+opciones = ["Azul", "Rojo", "Negro", "Amarilla"]
+for opcion7 in opciones:
+    lista.insert(tk.END, opcion7)
+
+boton = tk.Button(ventana, text= "Mostrar selección al usuario", command= mostrar_seleccion)
+boton.pack(side="right")
 
 
 
