@@ -56,8 +56,8 @@
 
 class Calculadora():
      def __init__(self):
-          self.num1 = int(int(input("Por favor ingrese un número: ")))
-          self.num2 = int(int(input("Por favor ingrese un número: ")))
+          self.num1 = int(input("Por favor ingrese un número: "))
+          self.num2 = int(input("Por favor ingrese un número: "))
 
      def suma(self):
           self.suma = self.num1 + self.num2

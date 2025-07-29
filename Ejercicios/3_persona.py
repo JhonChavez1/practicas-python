@@ -9,7 +9,7 @@ class Persona():
         self.ciudad = str(input("¿De donde eres? "))
 
     def saludar(self):
-        print(f"Hola me llamo {self.nombre} y tengo, {self.edad}, años")
+        print(f"Hola me llamo {self.nombre} y tengo {self.edad} años")
 
 persona = Persona()
 persona.saludar()
