@@ -2,48 +2,43 @@ class Cuenta_bancaria():
     def __init__(self):
         self._titular = str(input("Por favor ingrese su nombre: "))
         self._saldo = 0
-        print(f"Hola {self._titular} \nSu saldo es: {self._saldo}")
         self._historial = []
-        
-        while True:
-            try:            
-                if opcion not in [1, 4]:
-                    print("Por favor ingrese un valor válido")
-                    continue
-                break
-            except ValueError:
-                    print("Debe ingresar un número valido")
+        print(f"Hola {self._titular} \nSu saldo es: {self._saldo}")       
                   
-
     def movimiento(self):
-        self._historial = [f"Depósito inicial de {self.deposito}"]        
-        self.deposito = 0
-        self.retiro = 0   
-
         if opcion == 1:
             while True:
                 try:
-                    self.deposito = int(input("Por favor ingrese el valor a depositar: "))
+                    deposito = int(input("Por favor ingrese el valor a depositar: "))
                     if self.deposito <= 0:
                         print("Por favor ingrese un valor mayor a 0")
                         continue
                     break
                 except ValueError:
                     print("Por favor ingrese un valor válido")
-        
+
+            self._saldo += deposito
+            self._historial.append(f"Dep´sotio de ${deposito}")                   
             print("Su saldo es: ", self._saldo + self.deposito)
             self._historial.append(f"Depósito de {self.deposito}")
 
         elif opcion == 2:
             while True:
                 try:
-                    self.retiro =int(input("Por favor ingrese su valor a retirar: "))
-                    if self.retiro > self._saldo:
+                    retiro = int(input("Por favor ingrese su valor a retirar: "))
+                    if retiro <= 0:
+                        print("Por favor ingrese un valor mayor a 0")
+                        continue
+                    if retiro > self._saldo:
                         print("Saldo insuficiente")
                         continue
                     break
                 except ValueError:
                     print("Por favor ingrese un valor válido")
+
+            self._saldo -= retiro
+            self._historial.append(f"Retiro de ${retiro}")
+            print(f"Retiro exitoso \nSaldo actual: ${self._saldo}")
 
         elif self.retiro == 0:
             print("Por favor ingrese un valor mayor a 0")
@@ -60,16 +55,19 @@ cuenta_bancaria = Cuenta_bancaria()
 
 
 while True:
-    opcion = int(input("Por favor seleccione una opción: \n1. Depositar \n2. Retirar \n3. Ver historial \n4.Salir \n "))
-    if opcion ==1 or opcion == 2:
-        cuenta_bancaria.movimiento(opcion)
-    elif opcion == 2:
-        cuenta_bancaria.movimiento(2)
-    elif opcion == 3:
-        cuenta_bancaria.mostrar_historial()
-        break
-    else:
-        print("Hasta pronto!")
-        break
+    try:
+        opcion = int(input("Por favor seleccione una opción: \n1. Depositar \n2. Retirar \n3. Ver historial \n4.Salir \n "))
+        if opcion in [1, 2]:
+            cuenta_bancaria.movimiento(opcion)
+        elif opcion == 3:
+            cuenta_bancaria.mostrar_historial()
+        elif opcion == 4:
+            print("Hasta pronto!")
+            break
+        else:
+            print("Opción no valida, intente de nuevo")
+    except ValueError:
+                print("Por favor ingrese un número válido")
+
 
 
