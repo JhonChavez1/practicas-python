@@ -5,12 +5,12 @@ class Cuenta_bancaria():
         self._historial = []
         print(f"Hola {self._titular} \nSu saldo es: {self._saldo}")       
                   
-    def movimiento(self):
-        if opcion == 1:
+    def movimiento(self, opcion):
+        if opcion == 1: # Depositar
             while True:
                 try:
                     deposito = int(input("Por favor ingrese el valor a depositar: "))
-                    if self.deposito <= 0:
+                    if deposito <= 0:
                         print("Por favor ingrese un valor mayor a 0")
                         continue
                     break
@@ -18,11 +18,11 @@ class Cuenta_bancaria():
                     print("Por favor ingrese un valor válido")
 
             self._saldo += deposito
-            self._historial.append(f"Dep´sotio de ${deposito}")                   
-            print("Su saldo es: ", self._saldo + self.deposito)
-            self._historial.append(f"Depósito de {self.deposito}")
+            self._historial.append(f"Depósito de ${deposito}")                  
+            print("Depósito exitoso")
+            print("Su saldo es: ", self._saldo)
 
-        elif opcion == 2:
+        elif opcion == 2: # Retirar
             while True:
                 try:
                     retiro = int(input("Por favor ingrese su valor a retirar: "))
@@ -48,6 +48,8 @@ class Cuenta_bancaria():
 
     def mostrar_historial(self):
         print(f"Historial de movimientos para: {self._titular}: ")
+        if not self._historial:
+            print("No hay movimientos registrados.")
         for movimiento in self._historial:
             print(movimiento)
 
